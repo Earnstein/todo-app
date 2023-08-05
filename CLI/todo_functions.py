@@ -5,10 +5,12 @@ def read_file(todo_file):
     """ Read a text file and returns the list
     of to-do items.
     """
-    with open(todo_file, "r") as file:
-        todos = file.readlines()
+    try:
+        with open(todo_file, "r") as file:
+            todos = file.readlines()
+    except:
+        todos = ["Your todo list is empty"]
     return todos
-
 
 def get_todo_file_path():
     """
@@ -29,7 +31,6 @@ def add_todo(new_todo, todo_file):
     """
     with open(todo_file, "a") as file:
         file.write(new_todo + "\n")
-    print(f"({new_todo}) is added to the todo list.")
 
 
 def show_todo(todo_file):
@@ -48,7 +49,7 @@ def show_todo(todo_file):
         print("Your todo list is empty, start adding items now")
 
 
-def edit_todo(old_todo, todo_file):
+def edit_todo(old_todo, new_todo, todo_file):
     """
     Edits to-do item in a text file
     :param old_todo: to-do item to be edited.
@@ -58,7 +59,6 @@ def edit_todo(old_todo, todo_file):
     todos = read_file(todo_file)
     try:
         old_todo_index = todos.index(old_todo)
-        new_todo = input(f"Enter the new todo to replace {old_todo}: ").strip()
         todos[old_todo_index] = new_todo + "\n"
         with open(todo_file, "w") as file:
             file.writelines(todos)
@@ -66,8 +66,6 @@ def edit_todo(old_todo, todo_file):
         try:
             todo_index = int(old_todo) - 1
             if 0 <= todo_index < len(todos):
-                current_todo = todos[todo_index].strip()
-                new_todo = input(f"Enter the new todo to replace {current_todo}: ").strip()
                 todos[todo_index] = new_todo + "\n"
                 with open(todo_file, "w") as file:
                     file.writelines(todos)

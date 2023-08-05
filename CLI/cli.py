@@ -13,11 +13,13 @@ def main():
         if user_action.startswith('add'):
             todo = user_action[4:].strip()
             add_todo(todo, todo_file)
+            print(f"({todo}) is added to the todo list.")
         elif user_action.startswith("show"):
             show_todo(todo_file)
         elif user_action.startswith('edit'):
-            todo = user_action[5:].strip()
-            edit_todo(todo, todo_file)
+            current_todo = user_action[5:].strip()
+            new_todo = input(f"Enter the new todo to replace {current_todo}: ").strip()
+            edit_todo(current_todo, new_todo, todo_file)
         elif user_action.startswith("complete"):
             todo = user_action[9:].strip()
             complete_todo(todo, todo_file)
