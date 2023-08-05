@@ -1,7 +1,6 @@
 from todo import get_todo_file_path, add_todo, show_todo, edit_todo, complete_todo
 import time
 
-
 def main():
     """
     A program that runs a CLI to-do app
