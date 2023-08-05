@@ -25,6 +25,7 @@ window = sg.Window("My To-Do App",
 
 while True:
     event, value = window.read()
+    # helper print statements for window events and values
     print(1, window.read())
     print(2, event)
     print(3, value)
