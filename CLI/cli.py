@@ -23,6 +23,7 @@ def main():
         elif user_action.startswith("complete"):
             todo = user_action[9:].strip()
             complete_todo(todo, todo_file)
+            print("Completed and removed.")
         elif user_action.startswith('exit'):
             break
         else:

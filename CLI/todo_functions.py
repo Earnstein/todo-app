@@ -12,6 +12,7 @@ def read_file(todo_file):
         todos = ["Your todo list is empty"]
     return todos
 
+
 def get_todo_file_path():
     """
     :return: The file path of a text file
@@ -89,19 +90,19 @@ def complete_todo(completed_todo, todo_file):
             todo_to_remove = todos.pop(completed_todo_index).strip()
             with open(todo_file, "w") as file:
                 file.writelines(todos)
-            print(f"{todo_to_remove} is completed and thus removed.")
         else:
             print("Invalid item number.")
     except ValueError:
         todos = read_file(todo_file)
+        stripped_todos = [todo.strip() for todo in todos]
         completed_todo = completed_todo.strip()
-        if completed_todo in todos:
-            todos.remove(completed_todo)
+        if completed_todo in stripped_todos:
+            stripped_todos.remove(completed_todo)
+            todos = [f"{todo}\n" for todo in stripped_todos]
             with open(todo_file, "w") as file:
                 file.writelines(todos)
-            print(f"{completed_todo} is completed and thus removed.")
         else:
-            print("Kindly use the item index to remove completed todo.")
+            print("Invalid input")
 
 
 if __name__ == "__main__":
