@@ -13,7 +13,9 @@ def add_new_todo():
 
 
 st.title("My Todo App")
+st.write("Boosting Your Daily <b>Efficiency</b>...", unsafe_allow_html=True)
 
+st.subheader("Task Manager... ")
 for index, todo in enumerate(todo_contents):
     if todo == "Your todo add_new_todolist is empty":
         st.write("Your todo list is empty, start adding to-dos")
@@ -24,12 +26,12 @@ for index, todo in enumerate(todo_contents):
             del st.session_state[index]
             st.experimental_rerun()
 
-
 st.text_input(label="todo",
               label_visibility="hidden",
               placeholder="Add new todo...",
               key='new_todo',
               )
+
 if st.session_state["new_todo"] == "":
     pass
 else:
